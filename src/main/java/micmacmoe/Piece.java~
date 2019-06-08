@@ -1,0 +1,23 @@
+package micmacmoe;
+
+public class Piece {
+    private boolean isFree;
+    private String playerID;
+
+    public Piece() {
+	this.isFree = true;
+	this.playerID = "";
+    }
+
+    public boolean isFree() {
+	return this.isFree; 
+    }
+
+    public String getPlayerID() {
+	return this.playerID;
+    }
+    public void setPlayer(String playerID) {
+	this.isFree = false;
+	this.playerID = playerID;
+    }
+}
