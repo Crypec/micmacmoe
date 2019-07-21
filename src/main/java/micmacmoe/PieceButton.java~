@@ -1,0 +1,22 @@
+package micmacmoe;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class PieceButton extends JButton implements ActionListener {
+
+    private int index;
+
+    public PieceButton(String x, int i) {
+	super(x);
+	this.index = i;
+    }
+
+    public int getIndex() {
+	return this.index;
+    }
+
+    public void actionPerformed(ActionEvent ae) {
+	System.out.println("text");
+    }
+}

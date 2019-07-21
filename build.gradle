@@ -10,6 +10,7 @@ repositories {
 
 dependencies {
     implementation 'com.github.skebir:prettytable:v1.0'
+    implementation 'com.github.atarw:material-ui-swing:0.9.6'
     testImplementation 'junit:junit:4.12'
 }
 mainClassName = 'micmacmoe.App'
@@ -17,4 +18,3 @@ mainClassName = 'micmacmoe.App'
 run {
     standardInput = System.in
 }
-

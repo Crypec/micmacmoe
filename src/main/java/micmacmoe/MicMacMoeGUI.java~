@@ -1,0 +1,25 @@
+package micmacmoe;
+
+public abstract class MicMacMoeGUI {
+
+    protected Board gameBoard;
+    protected int playerIndex;
+    protected String[] players;
+
+    public MicMacMoeGUI(int xSize, int ySize, String[] players) {
+	this.players = players;
+	this.playerIndex = 0;
+	this.gameBoard = new Board(xSize, ySize);
+    }
+
+    public void play() {}
+
+    public void updatePlayer() {
+	int index = this.playerIndex;
+	this.playerIndex = index > (players.length -1) ? index + 1 : 0;
+    }
+
+    public String getCurrentPlayer() {
+	return this.players[this.playerIndex];
+    }
+}

@@ -1,23 +1,34 @@
 package micmacmoe;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
 public class Game {
 
-    private Board gameBoard;
-    private int playerIndex;
-    private String[] players; 
+    private int xSize;
+    private int ySize;
+    private String[] players;
+    private GUIStyle style;
 
     public static class Builder {
 
-	private Board gameBoard;
-	private int playerIndex;
 	private String[] players;
+	private GUIStyle style;
+	private int xSize;
+	private int ySize;
 
 	public Builder() {}
 
-	public Builder size(final int x, final int y) {
-	    this.gameBoard = new Board(x, y);
+	public Builder size(int x, int y) {
+
+	    this.xSize = x;
+	    this.ySize = y;
+	    return this;
+	}
+
+	public Builder style(GUIStyle style) {
+	    this.style = style;
 	    return this;
 	}
 
@@ -29,24 +40,17 @@ public class Game {
 
 	public Game build() {
 	    var game = new Game();
-	    game.gameBoard = this.gameBoard;
+	    game.style = this.style;
 	    game.players = this.players;
-	    game.playerIndex = 0;
+	    game.xSize = this.xSize;
+	    game.ySize = this.ySize;
 	    return game;
 	}
     }
-    
-    public void updatePlayer() {
-	int index = this.playerIndex;
-	this.playerIndex = index > (players.length -1) ? index + 1 : 0;
-    }
 
+    // TODO: switch depending on GUIStyle
     public void play() {
-	var frame = new JFrame();
+	var test = new GUIFrontend(this.xSize, this.ySize, this.players);
+	test.play();
     }
-    
-    public String getCurrentPlayer() {
-	return this.players[this.playerIndex];
-    }
-
 }

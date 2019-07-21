@@ -5,11 +5,12 @@ package micmacmoe;
 
 public class App {
 
-    public static void main(String[] args) {
+    public static void main(String... args) {
 	var micmacmoe = new Game.Builder()
-	    .size(3, 3)
-	    .players("X", "O") // @TODO support for AI Player 
+	    .size(9, 9)
+	    .players("X", "O") // @TODO support for AI Player
 	    .build();
+	//  .playerType(Player.HUMAN)
 	micmacmoe.play();
     }
 }

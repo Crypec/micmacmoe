@@ -1,28 +1,40 @@
 package micmacmoe;
 
-import javax.swing.*;
+public class Piece {
 
-public class Piece extends JButton {
     private boolean isFree;
     private String playerID;
 
     public Piece() {
-	    this.isFree = true;
-	    this.playerID = "";
+	this.isFree = true;
+	this.playerID = "";
+    }
+
+    public void display() {
+	if (this.isFree) {
+	    System.out.print("free ");
+	} else {
+	    System.out.print(this.playerID);
+	}
     }
 
     public boolean isFree() {
-	return this.isFree; 
+	return this.isFree;
     }
 
     public String getPlayerID() {
-	    if (this.isFree()) {
-	        return " ";
-	    }
-	    return this.playerID;
+	if (this.isFree()) {
+	    return " ";
+	}
+	return this.playerID;
     }
+
+    public boolean playerEquals(String player) {
+	return !this.isFree && this.playerID.equals(player);
+    }
+
     public void setPlayer(String playerID) {
-	    this.isFree = false;
-	    this.playerID = playerID;
+	this.isFree = false;
+	this.playerID = playerID;
     }
 }

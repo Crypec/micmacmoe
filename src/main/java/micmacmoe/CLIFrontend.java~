@@ -1,0 +1,14 @@
+package micmacmoe;
+
+
+// TODO: use prettytable lib
+public class CLIFrontend extends MicMacMoeGUI {
+
+    public CLIFrontend(int xSize, int ySize, String[] players) {
+	super(xSize, ySize, players);
+    }
+
+    public void play() {
+
+    }
+}
