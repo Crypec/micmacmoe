@@ -1,5 +1,7 @@
 package micmacmoe;
 
+import micmacmoe.util.GUIStyle;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;

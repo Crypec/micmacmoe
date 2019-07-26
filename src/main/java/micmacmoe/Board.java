@@ -16,6 +16,11 @@ public class Board {
 	}
     }
 
+    public Board(Board board) {
+	this.gameBoard = board.getBoard();
+    }
+
+
     // TODO return better error value for performance and ergonomics
     // TODO: maybe a boolean if setting the player was possible and valid
     public boolean setPlayer(int x, int y, String playerID) {
@@ -29,7 +34,6 @@ public class Board {
 	    return true;
 	}
     }
-
 
     /*
       With cords: (x,y)
@@ -52,7 +56,8 @@ public class Board {
       @TODO:
       could return an Option to a potential Winner
       @WARN:
-      should check the whole board all the times because this is nesecarry for AI player
+      should check the whole board all the times because this is nesecarry for AI
+      player
     */
     public boolean hasWinner() {
 
@@ -65,89 +70,116 @@ public class Board {
 	}
 	// it makes only sense to check the diagonals only if gameBoard is a square
 	if (this.gameBoard.length == this.gameBoard[0].length) {
-	    hasWinner |= this.diagonalLeftToRightDown() || this.diagonalLeftToRightUp();
+	    hasWinner |=
+		this.diagonalLeftToRightDown() || this.diagonalLeftToRightUp();
 	}
 	return hasWinner;
     }
+    // TODO: the code is horrible, i know and i am also not in the mood to fix it
+    // right now
+    public boolean[][] getWinnerCells() {
 
-    private boolean checkRow(int row) {
-	String first = this.gameBoard[row][0].getPlayerID();
-	for (var elem : this.gameBoard[row]) {
-	    if (!elem.playerEquals(first)) {
-		return false;
-	    }
+	int xSize = this.gameBoard.length;
+	int ySize = this.gameBoard[0].length;
+
+	boolean[][] winnerCells = new boolean[ySize][xSize];
+	for (boolean[] row : winnerCells) {
+	    Arrays.fill(row, false);
 	}
-	return true;
-    }
-
-    private boolean checkCol(int col) {
-	String first = this.gameBoard[0][col].getPlayerID();
-	for (int i = 0; i < this.gameBoard.length; i++) {
-	    if (!this.gameBoard[i][col].playerEquals(first)) {
-		return  false;
-	    }
-	}
-	return true;
-    }
-
-    private boolean diagonalLeftToRightDown() {
-	String first = this.gameBoard[0][0].getPlayerID();
-	for (int i = 0; i < this.gameBoard.length; i++) {
-	    if (!this.gameBoard[i][i].playerEquals(first)) {
-		return false;
-	    }
-	}
-	return true;
-    }
-
-    private boolean diagonalLeftToRightUp() {
-	String first = this.gameBoard[this.gameBoard.length -1][0].getPlayerID();
-	int x = 0;
-	int y = this.gameBoard.length -1;
 
 	for (int i = 0; i < this.gameBoard.length; i++) {
-	    if (!this.gameBoard[y][x].playerEquals(first)) {
-		return false;
-	    }
-	    x++; y--;
-	}
-	return true;
-    }
-
-    public boolean isFull() {
-	for (var row : this.gameBoard) {
-	    for (var cell : row) {
-		if (cell.isFree()) {
-		    return false;
+	    if (this.checkRow(i)) {
+		for (int c = 0; c < xSize; c++) {
+		    winnerCells[i][c] = true;
 		}
 	    }
 	}
-	return true;
-    }
 
-    public void display() {
-	for (var row : this.gameBoard) {
-	    for (var piece : row) {
-		piece.display();
-	    }
-	    System.out.println();
-
+	for (int i = 0; i < this.gameBoard[0].length; i++) {
 	}
+	// it makes only sense to check the diagonals only if gameBoard is a square
+	if (this.gameBoard.length == this.gameBoard[0].length) {
+	    boolean hasWinner =
+		this.diagonalLeftToRightDown() || this.diagonalLeftToRightUp();
+	}
+	return winnerCells;
+  }
+  private boolean checkRow(int row) {
+    String first = this.gameBoard[row][0].getPlayerID();
+    for (var elem : this.gameBoard[row]) {
+      if (!elem.playerEquals(first)) {
+        return false;
+      }
     }
+    return true;
+  }
 
-    public Piece[][] getBoard() {
-	return this.gameBoard;
+  private boolean checkCol(int col) {
+    String first = this.gameBoard[0][col].getPlayerID();
+    for (int i = 0; i < this.gameBoard.length; i++) {
+      if (!this.gameBoard[i][col].playerEquals(first)) {
+        return false;
+      }
     }
+    return true;
+  }
 
-    public int getSize() {
-	return this.gameBoard.length * this.gameBoard[0].length;
+  private boolean diagonalLeftToRightDown() {
+    String first = this.gameBoard[0][0].getPlayerID();
+    for (int i = 0; i < this.gameBoard.length; i++) {
+      if (!this.gameBoard[i][i].playerEquals(first)) {
+        return false;
+      }
     }
+    return true;
+  }
+  private boolean diagonalLeftToRightUp() {
+    String first = this.gameBoard[this.gameBoard.length - 1][0].getPlayerID();
+    int x = 0;
+    int y = this.gameBoard.length - 1;
 
-    public int getYSize() {
-	return this.gameBoard.length;
+    for (int i = 0; i < this.gameBoard.length; i++) {
+      if (!this.gameBoard[y][x].playerEquals(first)) {
+        return false;
+      }
+      x++;
+      y--;
     }
+    return true;
+  }
 
-    public int getXSize() {
-	return this.gameBoard[0].length;
-    }
+  public boolean isFull() {
+      for (var row : this.gameBoard) {
+	  for (var cell : row) {
+	      if (cell.isFree()) {
+		  return false;
+	      }
+	  }
+      }
+      return true;
+  }
+
+  public void display() {
+
+      var board = Arrays.asList();
+
+      board.forEach(System.out::println);
+      
+      for (var row : this.gameBoard) {
+	  for (var piece : row) {
+	      piece.display();
+	  }
+	  System.out.println();
+      }
+  }
+
+  public Piece[][] getBoard() { return this.gameBoard; }
+
+  public int getSize() {
+    return this.gameBoard.length * this.gameBoard[0].length;
+  }
+
+  public int getYSize() { return this.gameBoard.length; }
+
+  public int getXSize() { return this.gameBoard[0].length; }
 }
