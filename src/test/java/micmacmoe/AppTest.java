@@ -3,5 +3,4 @@
  */
 package micmacmoe;
 
-public class AppTest {
-}
+public class AppTest {}

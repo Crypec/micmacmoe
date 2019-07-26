@@ -1,10 +1,9 @@
 package micmacmoe;
 
-import micmacmoe.util.GUIStyle;
-
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.*;
+import micmacmoe.util.GUIStyle;
 
 public class Game {
 
@@ -29,7 +28,7 @@ public class Game {
 	    return this;
 	}
 
-	public Builder style(GUIStyle style) {
+	public Builder withGUI(GUIStyle style) {
 	    this.style = style;
 	    return this;
 	}
@@ -52,7 +51,11 @@ public class Game {
 
     // TODO: switch depending on GUIStyle
     public void play() {
-	var test = new GUIFrontend(this.xSize, this.ySize, this.players);
-	test.play();
+
+	Frontend gameUI = switch (this.style) {
+	    case CONSOLE -> new CLIFrontend(this.xSize, this.ySize, this.players);
+	    case GRAPHIC -> new GUIFrontend(this.xSize, this.ySize, this.players);
+	};
+	gameUI.play();
     }
 }

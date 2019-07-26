@@ -3,16 +3,21 @@
  */
 package micmacmoe;
 
-import java.util.ArrayList;
+import micmacmoe.util.*; 
+
 
 public class App {
 
+
+    
     public static void main(String... args) {
-	var micmacmoe = new Game.Builder()
-	    .size(3, 3)
-	    .players("X", "O") // @TODO support for AI Player
+	var micmacmoe =
+	    new Game.Builder()
+            .size(3, 3)
+            .players("X", "O") // @TODO support for AI Player
+	    .withGUI(GUIStyle.GRAPHIC)
 	    .build();
 	//  .playerType(Player.HUMAN)
-	 micmacmoe.play();
+	micmacmoe.play();
     }
 }
