@@ -9,12 +9,12 @@ public class Game {
 
     private int xSize;
     private int ySize;
-    private String[] players;
+    private Player[] players;
     private GUIStyle style;
 
     public static class Builder {
 
-	private String[] players;
+	private Player[] players;
 	private GUIStyle style;
 	private int xSize;
 	private int ySize;
@@ -34,7 +34,7 @@ public class Game {
 	}
 
 	// @TODO check that there are no duplicate Players -> HashSet
-	public Builder players(String... players) {
+	public Builder players(Player... players) {
 	    this.players = players;
 	    return this;
 	}

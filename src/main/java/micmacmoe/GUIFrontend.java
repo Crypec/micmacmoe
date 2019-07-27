@@ -44,7 +44,10 @@ public class GUIFrontend extends Frontend implements ActionListener {
 	frame.setVisible(true);
     }
 
-    public void advanceGame() {
+    public Point advanceGame() {
+
+	
+
 	if (this.gameBoard.hasWinner()) {
 	    JOptionPane.showMessageDialog(
 					  null, String.format("Player %s has won the game!", this.getCurrentPlayer()));
@@ -55,6 +58,11 @@ public class GUIFrontend extends Frontend implements ActionListener {
 	} else {
 	    this.updateCurrentPlayer();
 	}
+	return new Point(0, 0);
+    }
+
+    public Point nextMove(int x, int y) {
+	return new Point(x, y);
     }
 
     // TODO: this is absolutely stupid to have and eventListener for this
@@ -70,8 +78,10 @@ public class GUIFrontend extends Frontend implements ActionListener {
 		}
 	    }
 	}
-	// checks if setting the player was successfull
-	if (this.gameBoard.setPlayer(x, y, this.getCurrentPlayer())) {
+	
+	Point p = this.nextMove(x, y);
+
+	if (this.gameBoard.setPlayer(p.x, p.y, this.getCurrentPlayer())) {
 	    Color buttonBGColor;
 	    if (this.playerIndex % 2 == 0) {
 		buttonBGColor = Color.decode("#0C243B");

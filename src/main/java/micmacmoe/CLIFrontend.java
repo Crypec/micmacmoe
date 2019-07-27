@@ -8,8 +8,9 @@ public class CLIFrontend extends Frontend {
 	System.out.println("play!");
 
     }
-    public void advanceGame() {
+    public Point advanceGame() {
 	System.out.println("advance!");
+	return new Point(0, 0);
 
     }
 }
