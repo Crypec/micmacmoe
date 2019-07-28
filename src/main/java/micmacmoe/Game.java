@@ -22,7 +22,6 @@ public class Game {
 	public Builder() {}
 
 	public Builder size(int x, int y) {
-
 	    this.xSize = x;
 	    this.ySize = y;
 	    return this;
@@ -51,7 +50,6 @@ public class Game {
 
     // TODO: switch depending on GUIStyle
     public void play() {
-
 	Frontend gameUI = switch (this.style) {
 	    case CONSOLE -> new CLIFrontend(this.xSize, this.ySize, this.players);
 	    case GRAPHIC -> new GUIFrontend(this.xSize, this.ySize, this.players);

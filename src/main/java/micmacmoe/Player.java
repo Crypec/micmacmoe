@@ -10,7 +10,6 @@ public abstract class Player {
 	return this.id;
     }
 
-
     protected String id;
     public abstract Point move(Board board);
 }

@@ -14,10 +14,9 @@ public class App {
 	var micmacmoe =
 	    new Game.Builder()
             .size(3, 3)
-            .players("X", "O") // @TODO support for AI Player
+            .players(new Human("X"), new Human("O"))
 	    .withGUI(GUIStyle.GRAPHIC)
 	    .build();
-	//  .playerType(Player.HUMAN)
 	micmacmoe.play();
     }
 }

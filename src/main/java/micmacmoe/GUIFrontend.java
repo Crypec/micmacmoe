@@ -8,10 +8,9 @@ public class GUIFrontend extends Frontend implements ActionListener {
 
     private JButton[][] buttons;
 
-    public GUIFrontend(int xSize, int ySize, String[] players) {
+    public GUIFrontend(int xSize, int ySize, Player[] players) {
 	
 	super(xSize, ySize, players);
-
 	this.buttons = new JButton[ySize][xSize];
 	for (int i = 0; i < this.buttons.length; i++) {
 	    for (int j = 0; j < this.buttons[i].length; j++) {
@@ -45,12 +44,9 @@ public class GUIFrontend extends Frontend implements ActionListener {
     }
 
     public Point advanceGame() {
-
-	
-
 	if (this.gameBoard.hasWinner()) {
 	    JOptionPane.showMessageDialog(
-					  null, String.format("Player %s has won the game!", this.getCurrentPlayer()));
+					  null, String.format("Player %s has won the game!", this.getCurrentPlayer().getID()));
 	    System.exit(0);
 	} else if (this.gameBoard.isFull()) {
 	    JOptionPane.showMessageDialog(null, "Both of you lost, board is full!");
@@ -67,7 +63,6 @@ public class GUIFrontend extends Frontend implements ActionListener {
 
     // TODO: this is absolutely stupid to have and eventListener for this
     public void actionPerformed(ActionEvent ae) {
-
 	int x = 0;
 	int y = 0;
 	global:
@@ -78,10 +73,9 @@ public class GUIFrontend extends Frontend implements ActionListener {
 		}
 	    }
 	}
-	
-	Point p = this.nextMove(x, y);
+	// NOTE (Simon): set prefferd player location for huamn
 
-	if (this.gameBoard.setPlayer(p.x, p.y, this.getCurrentPlayer())) {
+	if (this.gameBoard.setPlayer(x, y, this.getCurrentPlayer())) {
 	    Color buttonBGColor;
 	    if (this.playerIndex % 2 == 0) {
 		buttonBGColor = Color.decode("#0C243B");
@@ -89,7 +83,7 @@ public class GUIFrontend extends Frontend implements ActionListener {
 		buttonBGColor = Color.decode("#C35D46");
 	    }
 	    this.buttons[y][x].setBackground(buttonBGColor);
-	    this.buttons[y][x].setText(this.getCurrentPlayer());
+	    this.buttons[y][x].setText(super.getCurrentPlayer().getID());
 	    this.buttons[y][x].setForeground(Color.WHITE);
 	    this.buttons[y][x].setFont(new Font("Arial", Font.PLAIN, 40));
 	    this.advanceGame();

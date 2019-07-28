@@ -1,7 +1,7 @@
 package micmacmoe;
 
 public class CLIFrontend extends Frontend {
-    public CLIFrontend(int xSize, int ySize, String[] players) {
+    public CLIFrontend(int xSize, int ySize, Player[] players) {
 	super(xSize, ySize, players);
     }
     public void play() {

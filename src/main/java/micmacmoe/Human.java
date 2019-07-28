@@ -14,7 +14,6 @@ public class Human extends Player {
 	this.preferredY = y;
     }
     
-    
     public Point move(Board board) {
 	return new Point(this.preferredX, this.preferredY);
     }

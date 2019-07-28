@@ -2,9 +2,18 @@ package micmacmoe;
 
 import micmacmoe.util.PlayerType;
 
-public class AIPlayer {
+public class AIPlayer extends Player {
 
-    public Point advance(PlayerType player, Board board) {
+    public AIPlayer(String id) {
+	super(id);
+    }
+
+    
+    private void evaluate() {
+	
+    }
+
+    public Point move(Board board) {
 	return new Point(0, 0);
     }
 }

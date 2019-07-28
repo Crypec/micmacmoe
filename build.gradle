@@ -13,7 +13,7 @@ dependencies {
     implementation 'com.github.atarw:material-ui-swing:0.9.6'
     testImplementation 'junit:junit:4.12'
 }
-mainClassName = 'main.java.micmacmoe.App'
+mainClassName = 'micmacmoe.App'
 
 tasks.withType(JavaCompile).each {
     it.options.compilerArgs.add('--enable-preview')

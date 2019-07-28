@@ -17,21 +17,21 @@ public class Board {
   }
 
   public Board(Board board) {
-    this.gameBoard = board.getBoard();
+      this.gameBoard = board.getBoard().clone();
   }
 
   // TODO return better error value for performance and ergonomics
   // TODO: maybe a boolean if setting the player was possible and valid
-  public boolean setPlayer(int x, int y, String playerID) {
-    if (y > this.gameBoard.length || x > this.gameBoard[0].length) {
-      return false;
-    }
-    if (!this.gameBoard[y][x].isFree()) {
-      return false;
-    } else {
-      this.gameBoard[y][x].setPlayer(playerID);
-      return true;
-    }
+    public boolean setPlayer(int x, int y, Player player) {
+	if (y > this.gameBoard.length || x > this.gameBoard[0].length) {
+	    return false;
+	}
+	if (!this.gameBoard[y][x].isFree()) {
+	    return false;
+	} else {
+	    this.gameBoard[y][x].setOwner(player);
+	    return true;
+	}
   }
 
   /*
@@ -102,48 +102,48 @@ public class Board {
   }
 
   private boolean checkRow(int row) {
-    String first = this.gameBoard[row][0].getPlayerID();
-    for (var elem : this.gameBoard[row]) {
-      if (!elem.playerEquals(first)) {
-        return false;
+      Player first = this.gameBoard[row][0].getPlayer();
+      for (var elem : this.gameBoard[row]) {
+	  if (!elem.playerEquals(first)) {
+	      return false;
+	  }
       }
-    }
-    return true;
+      return true;
   }
 
   private boolean checkCol(int col) {
-    String first = this.gameBoard[0][col].getPlayerID();
-    for (int i = 0; i < this.gameBoard.length; i++) {
-      if (!this.gameBoard[i][col].playerEquals(first)) {
-        return false;
+      Player first = this.gameBoard[0][col].getPlayer();
+      for (int i = 0; i < this.gameBoard.length; i++) {
+	  if (!this.gameBoard[i][col].playerEquals(first)) {
+	      return false;
+	  }
       }
-    }
-    return true;
+      return true;
   }
 
   private boolean diagonalLeftToRightDown() {
-    String first = this.gameBoard[0][0].getPlayerID();
-    for (int i = 0; i < this.gameBoard.length; i++) {
-      if (!this.gameBoard[i][i].playerEquals(first)) {
-        return false;
+      Player first = this.gameBoard[0][0].getPlayer();
+      for (int i = 0; i < this.gameBoard.length; i++) {
+	  if (!this.gameBoard[i][i].playerEquals(first)) {
+	      return false;
+	  }
       }
-    }
-    return true;
+      return true;
   }
 
   private boolean diagonalLeftToRightUp() {
-    String first = this.gameBoard[this.gameBoard.length - 1][0].getPlayerID();
-    int x = 0;
-    int y = this.gameBoard.length - 1;
+      Player first = this.gameBoard[this.gameBoard.length - 1][0].getPlayer();
+      int x = 0;
+      int y = this.gameBoard.length - 1;
 
-    for (int i = 0; i < this.gameBoard.length; i++) {
-      if (!this.gameBoard[y][x].playerEquals(first)) {
-        return false;
+      for (int i = 0; i < this.gameBoard.length; i++) {
+	  if (!this.gameBoard[y][x].playerEquals(first)) {
+	      return false;
+	  }
+	  x++;
+	  y--;
       }
-      x++;
-      y--;
-    }
-    return true;
+      return true;
   }
 
   public boolean isFull() {
