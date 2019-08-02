@@ -15,9 +15,9 @@ public class GUIFrontend extends Frontend implements ActionListener {
 	    for (int j = 0; j < this.buttons[i].length; j++) {
 		this.buttons[i][j] = new JButton("Free");
 		this.buttons[i][j].setBackground(Color.decode("#EBE6DB"));
-		this.buttons[i][j].setForeground(Color.BLACK);
-		this.buttons[i][j].addActionListener(this);
+
 		this.buttons[i][j].setFocusPainted(false);
+		this.buttons[i][j].addActionListener(this);
 	    }
 	}
     }
@@ -26,10 +26,9 @@ public class GUIFrontend extends Frontend implements ActionListener {
     public void start() {
 	var frame = new JFrame("MicMacMoe");
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	frame.setTitle("MicMacMoe");
-	frame.setSize(this.xSize * 200, this.ySize * 200);
+	frame.setSize(super.xSize * 200, super.ySize * 200);
 
-	frame.getContentPane().setLayout(new GridLayout(this.xSize, this.ySize));
+	frame.getContentPane().setLayout(new GridLayout(super.xSize, super.ySize));
 
 	for (var row : this.buttons) {
 	    for (var button : row) {
@@ -44,7 +43,7 @@ public class GUIFrontend extends Frontend implements ActionListener {
     public Point advanceGame() {
 	if (this.gameBoard.hasWinner()) {
 	    JOptionPane.showMessageDialog(
-					  null, String.format("Player %s has won the game!", this.getCurrentPlayer().getID()));
+					  null, String.format("Player %s has won the game!", this.getCurrentPlayer().getName()));
 	    System.exit(0);
 	} else if (this.gameBoard.isFull()) {
 	    JOptionPane.showMessageDialog(null, "Both of you lost, board is full!");
@@ -72,18 +71,17 @@ public class GUIFrontend extends Frontend implements ActionListener {
 	    }
 	}
 	// NOTE (Simon): set prefferd player location for huamn
-
 	if (this.gameBoard.setPlayer(x, y, this.getCurrentPlayer())) {
 	    Color buttonBGColor;
 	    if (this.playerIndex % 2 == 0) {
-		buttonBGColor = Color.decode("#0C243B");
+		this.buttons[y][x].setBackground(Color.decode("#0C243B"));
 	    } else {
-		buttonBGColor = Color.decode("#C35D46");
+		this.buttons[y][x].setBackground(Color.decode("#C35D46"));
 	    }
-	    this.buttons[y][x].setBackground(buttonBGColor);
-	    this.buttons[y][x].setText(super.getCurrentPlayer().getID());
 	    this.buttons[y][x].setForeground(Color.WHITE);
+
 	    this.buttons[y][x].setFont(new Font("Arial", Font.PLAIN, 40));
+	    this.buttons[y][x].setText(super.getCurrentPlayer().getName());
 	    this.advanceGame();
 	} 
     }

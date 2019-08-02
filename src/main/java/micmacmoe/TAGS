@@ -1,0 +1,105 @@
+
+AIPlayer.java,118
+public class AIPlayer 5,55
+    public AIPlayer(7,95
+    private void evaluate(12,152
+    public Point move(16,191
+
+App.java,59
+public class App 8,119
+    public static void main(9,138
+
+Board.java,599
+public class Board 5,46
+  private Piece[][] gameBoard;7,68
+  public Board(9,100
+  public Board(19,362
+    public boolean setPlayer(25,585
+  public boolean hasWinner(61,1529
+  public boolean[][] getWinnerCells(78,2140
+  private boolean checkRow(104,2909
+  private boolean checkCol(114,3143
+  private boolean diagonalLeftToRightDown(124,3406
+  private boolean diagonalLeftToRightUp(134,3673
+  public boolean isFull(149,4037
+  public void display(160,4230
+  public Piece[][] getBoard(174,4471
+  public int getSize(178,4535
+  public int getYSize(182,4626
+  public int getXSize(186,4691
+
+CLIFrontend.java,126
+public class CLIFrontend 3,20
+    public CLIFrontend(4,64
+    public void start(7,166
+    public Point advanceGame(11,229
+
+Frontend.java,335
+public abstract class Frontend 3,20
+    protected Board gameBoard;5,54
+    protected int playerIndex;6,85
+    protected Player[] players;7,116
+    protected int xSize;10,186
+    protected int ySize;11,211
+    protected Frontend(13,241
+    protected void updateCurrentPlayer(21,446
+    protected Player getCurrentPlayer(30,647
+
+Game.java,490
+public class Game 8,119
+    private int xSize;10,140
+    private int ySize;11,163
+    private Player[] players;12,186
+    private GUIStyle style;13,216
+    public static class Builder 15,245
+	private Player[] players;17,280
+	private GUIStyle style;18,307
+	private int xSize;19,332
+	private int ySize;20,352
+	public Builder(22,373
+	public Builder size(24,395
+	public Builder withGUI(30,496
+	public Builder players(36,648
+	public Game build(41,744
+    public void play(51,947
+
+GUIFrontend.java,245
+public class GUIFrontend 7,87
+    private JButton[][] buttons;9,158
+    public GUIFrontend(11,192
+    public void start(26,699
+    public Point advanceGame(44,1166
+    public Point nextMove(58,1600
+    public void actionPerformed(63,1748
+
+Human.java,182
+public class Human 3,20
+    private int preferredX;5,57
+    private int preferredY;6,85
+    public Human(8,118
+    public void setPreferred(12,167
+    public Point move(17,267
+
+Piece.java,322
+public class Piece 3,20
+    private boolean isFree;4,41
+    private Player owner;5,69
+    public Piece(7,96
+    public boolean isFree(12,165
+    public Player getPlayer(14,218
+    public boolean playerEquals(16,272
+    public String toString(23,431
+    public void display(25,510
+    public void setOwner(27,578
+
+Player.java,125
+public abstract class Player 3,20
+    public Player(5,52
+    protected String getID(9,105
+    protected String id;13,160
+
+Point.java,94
+public class Point 3,20
+    public int x;5,42
+    public int y;6,60
+    public Point(8,79

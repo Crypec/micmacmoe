@@ -15,12 +15,19 @@ public class Piece {
 
     public boolean playerEquals(Player player) {
 	if (!this.isFree) {
-	    return this.owner.getID().equals(player.getID());
-	} else
+	    return this.owner.getName().equals(player.getName());
+	} else {
 	    return false;
+	}
     }
 
-    public String toString() { return isFree ? "Free" : this.owner.getID(); }
+    public String toString() {
+	if (this.isFree && this.owner == null) {
+	    return "Free";
+	} else {
+	    return this.owner.getName();
+	}
+    }
 
     public void display() { System.out.println(this.toString()); }
 

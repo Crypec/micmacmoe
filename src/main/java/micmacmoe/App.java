@@ -13,5 +13,7 @@ public class App {
 	    .withGUI(GUIStyle.GRAPHIC)
 	    .build();
 	micmacmoe.play();
+	System.out.println("GAME FINISHED!");
+
     }
 }

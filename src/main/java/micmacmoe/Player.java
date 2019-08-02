@@ -2,14 +2,15 @@ package micmacmoe;
 
 public abstract class Player {
 
-    public Player(String id) {
-	this.id = id;
+    protected String name;
+
+    public Player(String name) {
+	this.name = name;
     }
 
-    protected String getID() {
-	return this.id;
+    protected String getName() {
+	return this.name;
     }
 
-    protected String id;
     public abstract Point move(Board board);
 }

@@ -3,7 +3,7 @@ package micmacmoe;
 public abstract class Frontend {
 
     protected Board gameBoard;
-    protected int playerIndex;
+    protected int playerIndex = 0;
     protected Player[] players;
 
     // used for constructing the gui
@@ -11,11 +11,11 @@ public abstract class Frontend {
     protected int ySize;
     
     protected Frontend(int xSize, int ySize, Player[] players) {
+	this.gameBoard = new Board(xSize, ySize);
+	this.players = players;
+
 	this.xSize = xSize;
 	this.ySize = ySize;
-	this.gameBoard = new Board(xSize, ySize);
-	this.playerIndex = 0;
-	this.players = players;
     }
 
     protected void updateCurrentPlayer() {
