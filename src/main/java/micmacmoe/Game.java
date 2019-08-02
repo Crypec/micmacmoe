@@ -50,10 +50,10 @@ public class Game {
 
     // TODO: switch depending on GUIStyle
     public void play() {
-	Frontend gameUI = switch (this.style) {
-	    case CONSOLE -> new CLIFrontend(this.xSize, this.ySize, this.players);
-	    case GRAPHIC -> new GUIFrontend(this.xSize, this.ySize, this.players);
+	Frontend UI = switch (this.style) {
+	case CONSOLE -> new CLIFrontend(this.xSize, this.ySize, this.players);
+	case GRAPHIC -> new GUIFrontend(this.xSize, this.ySize, this.players);
 	};
-	gameUI.play();
+	UI.start();
     }
 }

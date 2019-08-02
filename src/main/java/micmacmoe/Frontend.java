@@ -19,6 +19,13 @@ public abstract class Frontend {
     }
 
     protected void updateCurrentPlayer() {
+	System.out.println(playerIndex);
+	int playerCount = this.players.length -1;
+	if (this.playerIndex == playerCount) {
+	    this.playerIndex = 0;
+	} else {
+	    this.playerIndex += 1;
+	}
 	this.playerIndex = (this.playerIndex == this.players.length -1) ? 0 : this.playerIndex + 1;
     }
 
@@ -26,5 +33,5 @@ public abstract class Frontend {
 	return this.players[this.playerIndex];
     }
 
-    public abstract void play();
+    public abstract void start();
 }

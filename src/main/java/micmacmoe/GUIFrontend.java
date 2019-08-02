@@ -9,7 +9,6 @@ public class GUIFrontend extends Frontend implements ActionListener {
     private JButton[][] buttons;
 
     public GUIFrontend(int xSize, int ySize, Player[] players) {
-	
 	super(xSize, ySize, players);
 	this.buttons = new JButton[ySize][xSize];
 	for (int i = 0; i < this.buttons.length; i++) {
@@ -24,8 +23,7 @@ public class GUIFrontend extends Frontend implements ActionListener {
     }
 
 
-    public void play() {
-
+    public void start() {
 	var frame = new JFrame("MicMacMoe");
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	frame.setTitle("MicMacMoe");

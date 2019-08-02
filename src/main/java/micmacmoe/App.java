@@ -3,18 +3,13 @@
  */
 package micmacmoe;
 
-import micmacmoe.util.*; 
-
+import micmacmoe.util.*;
 
 public class App {
-
-
-    
     public static void main(String... args) {
-	var micmacmoe =
-	    new Game.Builder()
-            .size(3, 3)
-            .players(new Human("X"), new Human("O"))
+	var micmacmoe = new Game.Builder()
+	    .size(3, 3)
+	    .players(new Human("X"), new Human("O"))
 	    .withGUI(GUIStyle.GRAPHIC)
 	    .build();
 	micmacmoe.play();
