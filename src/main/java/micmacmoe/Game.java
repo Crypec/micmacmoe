@@ -48,7 +48,6 @@ public class Game {
 	}
     }
 
-    // TODO: switch depending on GUIStyle
     public void play() {
 	Frontend UI = switch (this.style) {
 	case CONSOLE -> new CLIFrontend(this.xSize, this.ySize, this.players);
